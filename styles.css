@@ -4,6 +4,23 @@ body {
     color: white;
 }
 
+.status-panel {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.board {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.space {
+    
+}
+
 .game-header {
     background: black;
     border-radius: 1000px;
