@@ -15,11 +15,27 @@ body {
     background: white;
     padding: 1rem;
     border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .space {
-    
+    background: black;
+    color: white;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
 }
+
+[data-category="maantieto"] { background: greenyellow;}
+[data-category="yleistieto"] { background: purple;}
+[data-category="historia"] { background: rgb(243, 243, 134);}
+[data-category="taide ja kulttuuri"] { background: black;}
+[data-category="tiede"] { background: rgb(0, 255, 0);}
+[data-category="urheilu"] { background: red;}
 
 .game-header {
     background: black;

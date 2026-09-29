@@ -46,6 +46,11 @@ function CreateBoard() {
 
         newSpace.className = "space";
 
+        newSpace.style.gridColumn = coordinate.column;
+        newSpace.style.gridRow = coordinate.row;
+
+        newSpace.dataset.category = category.id;
+
         newSpace.textContent = category.name;
 
         boardElement.append(newSpace);
