@@ -44,12 +44,35 @@ body {
     margin: 0 25rem;
 }
 
-.dice-panel, 
 .player-card {
     background: black;
     border-radius: 1rem;
     padding: 1px;
     color: white;
+    display: grid;
+    place-items: center;
+}
+
+.dice-panel {
+    background: black;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+
+.dice-box {
+    background: black;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 1rem;
+    border: 5px solid white;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
 }
 
 .player-image {
