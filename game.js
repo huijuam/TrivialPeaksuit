@@ -67,6 +67,7 @@ function CreateBoard() {
         newSpace.style.gridRow = coordinate.row;
 
         newSpace.dataset.category = category.id;
+        newSpace.dataset.spaceIndex = index;
 
         newSpace.textContent = category.name;
 
@@ -75,7 +76,22 @@ function CreateBoard() {
 }
 
 function RollDice() {
-    let diceResult = Math.floor(Math.random() * 6) + 1;
+    var diceResult = Math.floor(Math.random() * 6) + 1;
 
     diceBoxElement.textContent = diceResult;
+
+    gameState.player.position = gameState.player.position + diceResult;
+
+    UpdateTokens();
+}
+
+function UpdateTokens() {
+
+    var currentSpace = document.querySelector(`[data-space-index='${gameState.player.position}']`)
+
+    var token = document.createElement("token");
+    token.textContent = "P";
+    token.className = "token";
+
+    currentSpace.append(token);
 }
