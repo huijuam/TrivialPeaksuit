@@ -26,8 +26,11 @@ body {
     padding: 0.3rem;
     border-radius: 0.5rem;
     font-weight: bold;
+
     display: grid;
     place-items: center;
+
+    position: relative;
 }
 
 [data-category="maantieto"] { background: greenyellow;}
@@ -80,5 +83,17 @@ body {
 }
 
 .token {
-    
+    background: aquamarine;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.1rem solid black;
+    border-radius: 20%;
+    color: black;
+
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.2rem;
 }

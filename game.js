@@ -80,12 +80,15 @@ function RollDice() {
 
     diceBoxElement.textContent = diceResult;
 
-    gameState.player.position = gameState.player.position + diceResult;
+    gameState.player.position = (gameState.player.position + diceResult) % BOARD_SIZE;
 
     UpdateTokens();
 }
 
 function UpdateTokens() {
+    document.querySelectorAll(".token").forEach( (token) => {
+        token.remove();
+    } )
 
     var currentSpace = document.querySelector(`[data-space-index='${gameState.player.position}']`)
 
