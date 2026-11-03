@@ -21,10 +21,13 @@ const gameState = {
     currentTurn: "player"
 };
 
+var API_URL = "https://oma-trivia-api-0f8ffa1eed2e.herokuapp.com/api/questions";
+
 const BOARD_SIZE = 18;
 const boardElement = document.querySelector("#board"); //#fairs
 const rollButtonElement = document.querySelector("#roll-button");
 const diceBoxElement = document.querySelector("#dice-box");
+var playerQuestionText = document.querySelector("#question-text");
 
 rollButtonElement.addEventListener("click", RollDice);
 CreateBoard();
@@ -83,6 +86,11 @@ function RollDice() {
     gameState.player.position = (gameState.player.position + diceResult) % BOARD_SIZE;
 
     UpdateTokens();
+
+    var currentCategory = CATEGORIES[gameState.player.position % CATEGORIES.length];
+
+    getQuestion(currentCategory.id);
+
 }
 
 function UpdateTokens() {
@@ -97,4 +105,24 @@ function UpdateTokens() {
     token.className = "token";
 
     currentSpace.append(token);
+}
+
+async function getQuestion(targetCategory) {
+    var response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "applicationn/json"
+        },
+        body: JSON.stringify({
+            "category": "tiede",
+            "difficulty": "helppo",
+            "ageGroup": "10-12",
+            "count": 1,
+            "language": "suomi"
+        })
+    });
+
+    var data = await response.json();
+    console.log(data)
+    console.log(data[0])
 }
