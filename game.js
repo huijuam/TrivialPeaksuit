@@ -89,7 +89,9 @@ function RollDice() {
 
     var currentCategory = CATEGORIES[gameState.player.position % CATEGORIES.length];
 
-    getQuestion(currentCategory.id);
+    //var questionData = await getQuestion(currentCategory.id);
+
+    //ShowQuestion(questionData)
 
 }
 
@@ -111,10 +113,10 @@ async function getQuestion(targetCategory) {
     var response = await fetch(API_URL, {
         method: "POST",
         headers: {
-            "Content-Type": "applicationn/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "category": "tiede",
+            "category": targetCategory,
             "difficulty": "helppo",
             "ageGroup": "10-12",
             "count": 1,
@@ -122,7 +124,17 @@ async function getQuestion(targetCategory) {
         })
     });
 
+    if (!response.ok) {
+        throw new Error ("Tapahtui ongelma.")
+    }
+
     var data = await response.json();
     console.log(data)
-    console.log(data[0])
+    console.log(data[0].question)
+
+    return data[0]
+}
+
+function ShowQuestion(questionData) {
+    playerQuestionText.innerHTML = questionData.question
 }
