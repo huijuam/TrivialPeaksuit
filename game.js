@@ -78,7 +78,7 @@ function CreateBoard() {
     }
 }
 
-function RollDice() {
+async function RollDice() {
     var diceResult = Math.floor(Math.random() * 6) + 1;
 
     diceBoxElement.textContent = diceResult;
@@ -89,10 +89,15 @@ function RollDice() {
 
     var currentCategory = CATEGORIES[gameState.player.position % CATEGORIES.length];
 
-    //var questionData = await getQuestion(currentCategory.id);
 
-    //ShowQuestion(questionData)
-
+    try {
+    var questionData = await getQuestion(currentCategory.id);
+    ShowQuestion(questionData)
+    }
+    catch (error) {
+        playerQuestionText.innerHTML = error;
+    }
+    
 }
 
 function UpdateTokens() {
@@ -130,9 +135,9 @@ async function getQuestion(targetCategory) {
 
     var data = await response.json();
     console.log(data)
-    console.log(data[0].question)
+    console.log(data.questions[0].question)
 
-    return data[0]
+    return data.questions[0]
 }
 
 function ShowQuestion(questionData) {
